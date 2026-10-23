@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+.wrangler/
+.openai/
+__pycache__/
+*.zip
+qa/
+.env*
