@@ -4,6 +4,7 @@ from html import escape
 import json
 ROOT=Path(__file__).parent
 OUT=ROOT/'dist'
+OUT.mkdir(parents=True, exist_ok=True)
 FORM='https://forms.gle/F9uj81bbYE5Uao6g7'
 ARROW='<span aria-hidden="true">↗</span>'
 def cta(label='Request a Service',cls='button',**kwargs):
@@ -60,5 +61,6 @@ PAGES=[('index.html','Engineering Services in the DMV | R.S. Kohli & Co.','Civil
 for file,title,desc,content in PAGES:
  html=f'''<!doctype html><html lang="en" id="top"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0B2545"><title>{escape(title)}</title><meta name="description" content="{escape(desc)}"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(desc)}"><meta property="og:type" content="website"><link rel="icon" href="assets/logo.webp"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script><link rel="stylesheet" href="assets/styles.css"><script type="module" src="assets/main.js"></script></head><body class="antialiased selection:bg-slate-200">{header(file)}<main id="main">{content()}</main>{footer()}</body></html>'''
  (OUT/file).write_text(html)
+(ROOT/'.openai').mkdir(parents=True, exist_ok=True)
 (ROOT/'.openai/hosting.json').write_text(json.dumps({'static':{'directory':'dist'}}))
 print('Generated',len(PAGES),'semantic pages')

@@ -1,6 +1,7 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "rs-kohli-premium-website",
+  "name": "rs-kohli",
   "compatibility_date": "2026-10-21",
-  "assets": { "directory": "./dist" }
+  "assets": {
+    "directory": "./dist"
+  }
 }
